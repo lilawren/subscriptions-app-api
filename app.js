@@ -1,8 +1,18 @@
 // Written by Lawrence Li
 
 const express = require("express");
+const cors = require("cors");
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+
 const app = express();
 app.use(express.json());
+app.use(cors());
+
+app.use(morgan("dev"));
+// Use body parser so we can get info from POST and/or URL parameters
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Add intentional timeout
 app.use((req, res, next) => {
