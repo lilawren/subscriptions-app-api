@@ -64,7 +64,7 @@ app.put("/api/current", (req, res) => {
 
 // Returns price of the updated subscription
 app.get("/api/preview", (req, res) => {
-  const { plan, seats } = req.body;
+  const { plan, seats } = req.query;
   const result = {
     plan,
     name: PLAN_NAMES[plan],
