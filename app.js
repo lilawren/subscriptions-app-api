@@ -49,13 +49,12 @@ app.get("/api/current", (req, res) => {
 
 // Update the plan
 app.put("/api/current", (req, res) => {
-  console.log(req.body);
   const { plan, seats } = req.body;
   storedSubscription = {
     ...storedSubscription,
     plan,
     name: PLAN_NAMES[plan],
-    seats,
+    seats: parseInt(seats),
     cost: seats * PLAN_COSTS[plan]
   };
 
@@ -68,7 +67,7 @@ app.get("/api/preview", (req, res) => {
   const result = {
     plan,
     name: PLAN_NAMES[plan],
-    seats,
+    seats: parseInt(seats),
     cost: seats * PLAN_COSTS[plan]
   };
   res.json(result).status(200);
